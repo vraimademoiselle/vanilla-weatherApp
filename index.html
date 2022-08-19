@@ -6,52 +6,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@200;400&family=Noto+Serif+JP:wght@200;300&family=PT+Mono&family=Pacifico&family=Roboto:ital,wght@0,300;0,400;0,500;1,900&family=Sen:wght@400;700;800&family=Ubuntu&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet"/>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    <link rel="stylesheet" href="src/styles.css" />
+
+    <link rel="stylesheet" href="index.css"/>
     <title>Weather app</title>
   </head>
   <body>
     <div class="container m-3">
       <div class="border border-success border-3">
         <div class="container">
+
+          <form class="search-form" id="search-form">
           <div class="row">
             <div class="col-6">
+             
               <input
+                type ="Search"
                 class="form-control mt-2 ms-2 top-0 end-0"
-                type="text"
-                placeholder=" Enter city"
-                aria-label="Search"
-              />
-            </div>
+                placeholder= "Enter city"
+                autofocus="on"
+                id="city-input"
+                autocomplete="off"
+              /> 
+        </div>
             <div class="col-6 pt-2">
-              <button type="button" class="btn btn-info">Search city🔍</button>
-              <button type="button" class="btn btn-primary ms-5">
+              <button type="submit" value = "Search" class="btn btn-info">Search city🔍</button>
+              <button type="submit" value = "Search" class="btn btn-primary ms-5" id="current-location">
                 Current city
               </button>
             </div>
           </div>
         </div>
-
-        <div class="border border-secondary mt-3 m-4 p-2">
-          <h1>Friday</h1>
-          <h2>Mombasa</h2>
-          <h3>sunny☀️</h3>
-          <h4 class="mb-4 display-2 text-center">24°c</h4>
+      </form>
+        <!--<div class="border border-secondary mt-3 m-4 p-2">-->
+          <h1 id="city"></h1>
+          <h2 id="date"></h2>
+        
+          <h3 class="h3">sunny☀️</h3> <div class="float-left">
+            <span class="temperature" id="temperature"></span>
+            <span class="units">
+              <a href="#" id="celsius-link">°C</a> |
+              <a href="#" id="fahrenheit-link">°F</a>
+            </span>
+          </div>
+          <div class="col-6 red">
+            <ul>
+              <li>
+                Precipitation: <span id="precipitation">0</span>%
+              </li>
+              <li>
+              Humidity:<span id="Humidity"></span>%
+              </li>
+              <li>
+                Wind: <span class="wind"></span> km/h
+              </li>
+            </ul>
+          </div>
           <div class="container">
             <div class="row row-cols-4">
               <div class="col-2">
-                sat<br />
+                <div class="weatherdate">
+                Sat<br />
                 🌧<br />
+                <div class="weathertemp">
+                <span class="weather-tempspan-max">16°c</span> 
+                <span class="weather-tempspan-min">18°c</span></div>
+              </div>
               </div>
               <div class="col-2">
                 Sun<br />
@@ -75,8 +97,9 @@
               </div>
             </div>
           </div>
-        </div>
+        <!--</div>-->
         <br />
+        <hr>
         <div class="row row-cols-4 ms-4">
           <div class="col-2">Nairobi</div>
           <div class="col-2">Eldoret</div>
@@ -84,8 +107,9 @@
           <div class="col-2">Garissa</div>
         </div>
       </div>
+      
     </div>
-    <script src="src/index.js"></script>
-    <a href="http://github.com/vraimademoiselle/vanilla-weatherApp.git">vanilla-weatherApp</a>
+    <script src="ruweidhatwo.js"></script>
+    <a href="http://github.com/vraimademoiselle/vanilla-weatherApp.git">Open-Source Code</a>  by Fatma Osman
   </body>
 </html>
