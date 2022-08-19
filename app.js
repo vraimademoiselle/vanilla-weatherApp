@@ -26,25 +26,18 @@ function displayWeatherCondition(response){
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#temperature").innerHTML = Math.round(
     response.data.main.temp);
+}
 
-document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-    document.querySelector("#wind").innerHTML = Math.round(
-      response.data.wind.speed
-    );
-    document.querySelector("#description").innerHTML =
-      response.data.weather[0].main;
-    
-    }
 
-function searchCity(city) {
- 
+function searchCity(event) {
+  event.preventDefault();
   let apiKey = `5716439bd9f0234445db7a8c0551777e`;
+  
   let city = document.querySelector("#city-input").value;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition);
 }
 function handleSubmit(event){
-  debugger;
   event.preventDefault();
   let city = document.querySelector("cityInput").value;
   searchCity(city);
@@ -59,10 +52,9 @@ function convertToCelsius(event) {
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = 24;
 }
-
 function searchLocation(position){
   let apiKey = `5716439bd9f0234445db7a8c0551777e`;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}
+  let apiUrl =  `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}
   &lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   console.log(apiUrl);
   axios.get(apiUrl).then(displayWeatherCondition);
