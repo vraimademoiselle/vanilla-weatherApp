@@ -1,14 +1,15 @@
-function formatDate(timestamp) {
-    let date = new Date(timestamp);
+function formatDate(date) {
     let hours = date.getHours();
     if (hours < 10) {
       hours = `0${hours}`;
     }
+  
     let minutes = date.getMinutes();
     if (minutes < 10) {
       minutes = `0${minutes}`;
     }
   
+    let dayIndex = date.getDay();
     let days = [
       "Sunday",
       "Monday",
@@ -18,10 +19,9 @@ function formatDate(timestamp) {
       "Friday",
       "Saturday",
     ];
-    let day = days[date.getDay()];
+    let day = days[dayIndex];
     return `${day} ${hours}:${minutes}`;
   }
-  
   function formatDay(timestamp) {
     let date = new Date(timestamp * 1000);
     let day = date.getDay();
@@ -29,7 +29,7 @@ function formatDate(timestamp) {
   
     return days[day];
   }
-  
+ 
   function displayForecast(response) {
     let forecast = response.data.daily;
   
@@ -68,7 +68,7 @@ function formatDate(timestamp) {
   }
   
   function getForecast(coordinates) {
-    let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+    let apiKey = "5716439bd9f0234445db7a8c0551777e";
     let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayForecast);
   }
@@ -99,19 +99,22 @@ function formatDate(timestamp) {
     getForecast(response.data.coord);
   }
   
-  function search(city) {
-    let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(displayTemperature);
-  }
-  
-  function handleSubmit(event) {
+  function searchCity(event) {
     event.preventDefault();
-    let cityInputElement = document.querySelector("#city-input");
-    search(cityInputElement.value);
+    let apiKey = `5716439bd9f0234445db7a8c0551777e`;
+    
+    let city = document.querySelector("#city-input").value;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayWeatherCondition);
   }
-  
+  function handleSubmit(event){
+    event.preventDefault();
+    let city = document.querySelector("#cityInput").value;
+    searchCity(city);
+  }
   let form = document.querySelector("#search-form");
-  form.addEventListener("submit", handleSubmit);
+form.addEventListener("submit", handleSubmit);
   
-  search("New York");
+  searchCity("New York");
+  
+  
